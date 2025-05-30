@@ -3,138 +3,336 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Job Search Aggregator (Dark Mode)</title>
-    
+    <title>India Job Search Aggregator (Enhanced)</title>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T913Y0WNP"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-9T913Y0WNP');
     </script>
+    <!-- End Google tag -->
 
     <style>
+        :root {
+            --bg-color: #1e1e1e;
+            --surface-color: #2c2c2c;
+            --primary-text-color: #e0e0e0;
+            --secondary-text-color: #b0b0b0;
+            --accent-color: #4a90e2;
+            --accent-hover-color: #357abd;
+            --border-color: #444;
+            --input-bg-color: #333;
+            --hover-bg-color: #3a3a3a;
+            --card-bg-color: #333;
+            --link-color: #8ab4f8;
+            --link-hover-color: #a8c7fa;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #1e1e1e; /* Dark background */
-            color: #e0e0e0; /* Light text */
+            background-color: var(--bg-color);
+            color: var(--primary-text-color);
             line-height: 1.6;
+            padding-bottom: 40px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 30px auto;
-            background-color: #2c2c2c; /* Slightly lighter dark for container */
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: var(--surface-color);
+            padding: 20px 30px 30px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         h1 {
             text-align: center;
-            color: #4a90e2; /* Accent color for heading */
+            color: var(--accent-color);
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
             margin-bottom: 25px;
         }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         label, legend {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: bold;
-            color: #b0b0b0; /* Lighter grey for labels */
+            color: var(--secondary-text-color);
+            font-size: 0.95rem;
         }
         input[type="text"], select {
-            width: calc(100% - 24px);
-            padding: 12px;
-            border: 1px solid #444; /* Darker border */
-            border-radius: 5px;
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             box-sizing: border-box;
-            background-color: #333; /* Dark input background */
-            color: #e0e0e0; /* Light text in input */
+            background-color: var(--input-bg-color);
+            color: var(--primary-text-color);
             font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         input[type="text"]::placeholder {
             color: #777;
         }
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+        }
+
+        .quick-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .filter-tag {
+            background-color: var(--hover-bg-color);
+            color: var(--primary-text-color);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .filter-tag:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+        .filter-tag.active {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
         fieldset {
-            border: 1px solid #444;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+        legend {
+            padding: 0 10px;
+            font-size: 1.1rem;
+            color: var(--accent-color);
         }
         .job-sources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
         }
         .job-sources-grid label {
             font-weight: normal;
             display: flex;
             align-items: center;
-            background-color: #3a3a3a; /* Darker background for checkboxes */
-            padding: 10px;
-            border-radius: 5px;
+            background-color: var(--hover-bg-color);
+            padding: 12px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            font-size: 0.9rem;
         }
         .job-sources-grid label:hover {
-            background-color: #4a4a4a;
+            background-color: #454545;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .job-sources-grid input[type="checkbox"] {
-            margin-right: 10px;
-            accent-color: #4a90e2; /* Checkbox color */
+            margin-right: 12px;
+            accent-color: var(--accent-color);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+        .select-all-container {
+            margin-bottom: 15px;
         }
         .select-all-container label {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             font-weight: normal;
             margin-right: 15px;
+            font-size: 0.9rem;
         }
+        .select-all-container input[type="checkbox"] {
+             margin-right: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
         button {
-            background-color: #4a90e2; /* Accent color for button */
-            color: white;
-            padding: 12px 20px;
+            padding: 14px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 1.1rem;
-            transition: background-color 0.2s;
-            display: block;
-            width: 100%;
-            margin-top: 10px;
+            font-weight: bold;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
         }
-        button:hover {
-            background-color: #357abd; /* Darker shade on hover */
+
+        button#searchButton {
+            background-color: var(--accent-color);
+            color: white;
+            flex: 1;
         }
+        button#searchButton:hover {
+            background-color: var(--accent-hover-color);
+            transform: translateY(-1px);
+        }
+
+        button#openAllButton {
+            background-color: var(--success-color);
+            color: white;
+            flex: 0 0 auto;
+            min-width: 150px;
+            display: none;
+        }
+        button#openAllButton:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0px);
+        }
+
+        #loadingMessage {
+            text-align: center;
+            color: var(--secondary-text-color);
+            font-style: italic;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .search-summary {
+            background-color: var(--card-bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+            display: none;
+        }
+
+        .search-summary h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+            font-size: 1.1rem;
+        }
+
+        .search-summary .query-preview {
+            font-family: monospace;
+            background-color: var(--hover-bg-color);
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
         #results {
-            margin-top: 30px;
+            margin-top: 35px;
         }
         #results h2 {
-            color: #4a90e2; /* Accent color */
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 12px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .results-count {
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+            font-weight: normal;
         }
         #results ul {
             list-style-type: none;
             padding: 0;
         }
         #results li {
-            background-color: #333; /* Darker list item background */
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #4a90e2;
+            background-color: var(--card-bg-color);
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent-color);
+            transition: box-shadow 0.2s;
+        }
+         #results li:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
         #results a {
             text-decoration: none;
-            color: #8ab4f8; /* Lighter blue for links */
-            font-weight: bold;
+            color: var(--link-color);
+            font-weight: 600;
+            font-size: 1rem;
         }
         #results a:hover {
             text-decoration: underline;
-            color: #a8c7fa;
+            color: var(--link-hover-color);
+        }
+        .result-source-name {
+            font-weight: bold;
+            color: var(--primary-text-color);
+        }
+        .result-recency {
+            font-size: 0.85em;
+            color: var(--secondary-text-color);
+            display: block;
+            margin-top: 4px;
+        }
+
+        .recent-searches {
+            background-color: var(--hover-bg-color);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            display: none;
+        }
+        .recent-searches h3 {
+            margin: 0 0 10px 0;
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+        .recent-search-item {
+            display: inline-block;
+            background-color: var(--card-bg-color);
+            padding: 6px 12px;
+            margin: 4px 8px 4px 0;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .recent-search-item:hover {
+            background-color: var(--accent-color);
+            color: white;
         }
     </style>
 </head>
@@ -142,50 +340,100 @@
     <div class="container">
         <h1>India Job Search Aggregator</h1>
 
-        <div class="form-group">
-            <label for="keywords">Keywords (e.g., Software Engineer Pune, Marketing Manager remote, Fresher jobs):</label>
-            <input type="text" id="keywords" placeholder="Enter job title, skills, company, location...">
+        <div class="recent-searches" id="recentSearches">
+            <h3>Recent Searches</h3>
+            <div id="recentSearchesList"></div>
         </div>
 
-        <div class="form-group">
-            <label for="recency">Recency:</label>
-            <select id="recency">
-                <option value="">Anytime</option>
-                <option value="h">Past Hour</option>
-                <option value="d">Past 24 Hours</option>
-                <option value="d3">Past 3 Days</option>
-                <option value="w">Past Week</option>
-                <option value="w2">Past 2 Weeks</option>
-                <option value="m">Past Month</option>
-            </select>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="keywords">Keywords:</label>
+                <input type="text" id="keywords" placeholder="e.g., Software Engineer, Marketing Manager, Data Scientist">
+                <div class="quick-filters">
+                    <span class="filter-tag" onclick="addKeyword('remote')">Remote</span>
+                    <span class="filter-tag" onclick="addKeyword('work from home')">WFH</span>
+                    <span class="filter-tag" onclick="addKeyword('fresher')">Fresher</span>
+                    <span class="filter-tag" onclick="addKeyword('internship')">Internship</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="">All Locations</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Noida">Noida</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="remote">Remote</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="recency">Recency:</label>
+                <select id="recency">
+                    <option value="">Anytime</option>
+                    <option value="h">Past Hour</option>
+                    <option value="d">Past 24 Hours</option>
+                    <option value="d3">Past 3 Days</option>
+                    <option value="w">Past Week</option>
+                    <option value="w2">Past 2 Weeks</option>
+                    <option value="m">Past Month</option>
+                </select>
+            </div>
         </div>
 
         <fieldset>
-            <legend>Job Platforms / ATS</legend>
+            <legend>Job Platforms & ATS</legend>
             <div class="select-all-container">
                  <input type="checkbox" id="selectAllPlatforms" onclick="toggleSelectAll(this, 'platform-checkbox')">
                  <label for="selectAllPlatforms">Select All Platforms/ATS</label>
             </div>
             <div class="job-sources-grid" id="jobPlatforms">
-                <!-- Job platforms will be populated by JavaScript -->
+                <!-- Populated by JS -->
             </div>
         </fieldset>
 
         <fieldset>
-            <legend>Major MNCs in India (Career Pages)</legend>
+            <legend>Major Companies</legend>
              <div class="select-all-container">
                 <input type="checkbox" id="selectAllMNCs" onclick="toggleSelectAll(this, 'mnc-checkbox')">
-                <label for="selectAllMNCs">Select All MNCs</label>
+                <label for="selectAllMNCs">Select All Companies</label>
             </div>
             <div class="job-sources-grid" id="mncJobSources">
-                <!-- MNC job sources will be populated by JavaScript -->
+                <!-- Populated by JS -->
             </div>
         </fieldset>
 
-        <button onclick="generateSearchLinks()">Search Jobs</button>
+        <fieldset>
+            <legend>Government & Banking</legend>
+             <div class="select-all-container">
+                <input type="checkbox" id="selectAllGov" onclick="toggleSelectAll(this, 'gov-checkbox')">
+                <label for="selectAllGov">Select All Gov/Banking</label>
+            </div>
+            <div class="job-sources-grid" id="govJobSources">
+                <!-- Populated by JS -->
+            </div>
+        </fieldset>
+
+        <div class="button-group">
+            <button id="searchButton" onclick="generateSearchLinks()">Generate Search Links</button>
+            <button id="openAllButton" onclick="openAllLinks()">Open All Links</button>
+        </div>
+        
+        <div id="loadingMessage">Generating links, please wait...</div>
+
+        <div class="search-summary" id="searchSummary">
+            <h3>Search Summary</h3>
+            <div id="summaryContent"></div>
+        </div>
 
         <div id="results">
-            <h2>Generated Search Links:</h2>
+            <h2>Generated Search Links <span class="results-count" id="resultsCount"></span></h2>
             <ul id="linksList"></ul>
         </div>
     </div>
@@ -194,61 +442,85 @@
         const jobPlatformConfig = [
             { name: "Naukri.com", site: "naukri.com" },
             { name: "Indeed India", site: "indeed.co.in" },
-            { name: "LinkedIn Jobs", site: "linkedin.com/jobs OR linkedin.com/jobs/search" },
+            { name: "LinkedIn Jobs", site: "linkedin.com/jobs" },
             { name: "Shine.com", site: "shine.com" },
             { name: "Foundit (Monster)", site: "foundit.in" },
             { name: "TimesJobs", site: "timesjobs.com" },
-            { name: "Glassdoor India Jobs", site: "glassdoor.co.in/Job" },
+            { name: "Glassdoor India", site: "glassdoor.co.in/Job" },
             { name: "Freshersworld", site: "freshersworld.com" },
-            { name: "Internshala (Jobs)", site: "internshala.com/jobs" },
-            { name: "Internshala (Internships)", site: "internshala.com/internships" },
+            { name: "Internshala Jobs", site: "internshala.com/jobs" },
+            { name: "Internshala Internships", site: "internshala.com/internships" },
             { name: "Cutshort", site: "cutshort.io" },
-            { name: "Hirist", site: "hirist.com" },
-            { name: "Apna.co", site: "apna.co/jobs" },
+            { name: "Hirist (Tech)", site: "hirist.com" },
+            { name: "Apna.co Jobs", site: "apna.co/jobs" },
             { name: "Instahyre", site: "instahyre.com" },
-            { name: "TopResume (India Jobs)", site: "topresume.com/career-advice/find-jobs-in-india" }, // Example of job advice site that lists jobs
-            { name: "AngelList India (Wellfound)", site: "wellfound.com/location/india" },
-            // Common ATS
-            { name: "Greenhouse (ATS)", site: "boards.greenhouse.io OR *.boards.greenhouse.io" },
-            { name: "Lever (ATS)", site: "jobs.lever.co OR *.jobs.lever.co" },
-            { name: "Ashby (ATS)", site: "jobs.ashbyhq.com OR *.jobs.ashbyhq.com" },
-            { name: "Workday (ATS)", site: "*.myworkdayjobs.com" },
-            { name: "SmartRecruiters (ATS)", site: "jobs.smartrecruiters.com" },
-            { name: "Oracle Taleo (ATS)", site: "*.taleo.net/careersection"}
+            { name: "Wellfound (AngelList)", site: "wellfound.com" },
+            { name: "Greenhouse ATS", site: "boards.greenhouse.io" },
+            { name: "Lever ATS", site: "jobs.lever.co" },
+            { name: "Ashby ATS", site: "jobs.ashbyhq.com" },
+            { name: "Workday ATS", site: "myworkdayjobs.com" },
+            { name: "SmartRecruiters ATS", site: "jobs.smartrecruiters.com" },
+            { name: "BambooHR ATS", site: "bamboohr.com/careers" }
         ];
 
         const mncConfig = [
-            { name: "Google Careers India", site: "careers.google.com/jobs/results/?location=India" },
-            { name: "Microsoft Careers India", site: "careers.microsoft.com/v2/global/en/locations/india.html OR jobs.microsoft.com/en-us/search?location=India" },
-            { name: "Amazon Jobs India", site: "amazon.jobs/en/locations/india OR amazon.jobs/en/search?base_query=&loc_query=India" },
+            { name: "Google Careers", site: "careers.google.com" },
+            { name: "Microsoft Careers", site: "careers.microsoft.com" },
+            { name: "Amazon Jobs", site: "amazon.jobs" },
+            { name: "Meta Careers", site: "careers.meta.com" },
+            { name: "Apple Jobs", site: "jobs.apple.com" },
             { name: "Accenture India", site: "accenture.com/in-en/careers" },
-            { name: "TCS (Tata)", site: "tcs.com/careers OR ibegin.tcs.com" },
-            { name: "Infosys Careers", site: "infosys.com/careers/explore-opportunities.html" },
+            { name: "TCS Careers", site: "tcs.com/careers" },
+            { name: "Infosys Careers", site: "infosys.com/careers" },
             { name: "Wipro Careers", site: "careers.wipro.com" },
-            { name: "Capgemini India", site: "capgemini.com/in-en/careers/" },
+            { name: "Capgemini India", site: "capgemini.com/careers" },
             { name: "HCLTech Careers", site: "hcltech.com/careers" },
-            { name: "IBM India Careers", site: "ibm.com/in-en/employment" },
-            { name: "Cognizant Careers", site: "careers.cognizant.com/global/en OR cognizantcareers.in" },
-            { name: "Deloitte India Careers", site: "www2.deloitte.com/in/en/careers/" },
-            { name: "EY India Careers", site: "ey.com/en_in/careers" },
-            { name: "Oracle India Careers", site: "oracle.com/in/careers/" },
-            { name: "SAP India Careers", site: "sap.com/india/about/careers.html" },
-            { name: "Salesforce India Careers", site: "salesforce.com/company/careers/locations/india/" },
-            { name: "Intel India Careers", site: "intel.com/content/www/us/en/jobs/locations/india.html" },
-            { name: "Cisco India Careers", site: "cisco.com/c/en_in/about/careers.html" },
-            { name: "Tata Motors Careers", site: "tatamotors.com/careers/" },
-            { name: "Reliance Industries Careers", site: "ril.com/careers" }
+            { name: "IBM Careers", site: "ibm.com/careers" },
+            { name: "Cognizant Careers", site: "careers.cognizant.com" },
+            { name: "Deloitte Careers", site: "deloitte.com/careers" },
+            { name: "EY Careers", site: "ey.com/careers" },
+            { name: "PwC Careers", site: "pwc.com/careers" },
+            { name: "Oracle Careers", site: "oracle.com/careers" },
+            { name: "SAP Careers", site: "sap.com/careers" },
+            { name: "Salesforce Careers", site: "salesforce.com/careers" },
+            { name: "Adobe Careers", site: "adobe.com/careers" }
         ];
+
+        const govBankingConfig = [
+            { name: "UPSC Jobs", site: "upsc.gov.in" },
+            { name: "SSC Online", site: "ssc.nic.in" },
+            { name: "Railway Recruitment", site: "rrbcdg.gov.in OR indianrailways.gov.in" },
+            { name: "Banking Personnel Selection", site: "ibps.in" },
+            { name: "SBI Careers", site: "sbi.co.in/careers" },
+            { name: "ICICI Bank Careers", site: "icicibank.com/careers" },
+            { name: "HDFC Bank Careers", site: "hdfcbank.com/careers" },
+            { name: "Axis Bank Careers", site: "axisbank.com/careers" },
+            { name: "Kotak Careers", site: "kotak.com/careers" },
+            { name: "IndusInd Bank Careers", site: "indusind.com/careers" },
+            { name: "NABARD Careers", site: "nabard.org" },
+            { name: "RBI Careers", site: "rbi.org.in" },
+            { name: "LIC Careers", site: "licindia.in/careers" },
+            { name: "SAIL Careers", site: "sail.co.in/careers" },
+            { name: "ONGC Careers", site: "ongcindia.com/careers" },
+            { name: "NTPC Careers", site: "ntpc.co.in/careers" },
+            { name: "BHEL Careers", site: "bhel.com/careers" },
+            { name: "Coal India Careers", site: "coalindia.in/careers" },
+            { name: "IOCL Careers", site: "iocl.com/careers" },
+            { name: "BPCL Careers", site: "bharatpetroleum.in/careers" }
+        ];
+
+        let recentSearches = [];
+        let currentLinks = [];
 
         function populateJobSources(config, containerId, checkboxClass) {
             const sourcesContainer = document.getElementById(containerId);
-            sourcesContainer.innerHTML = ''; // Clear existing, if any
+            sourcesContainer.innerHTML = '';
             config.forEach(source => {
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.value = source.site;
-                checkbox.id = `source-${containerId}-${source.name.replace(/[^a-zA-Z0-9]/g, '')}`; // Ensure unique ID
+                checkbox.id = `source-${containerId}-${source.name.replace(/[^a-zA-Z0-9]/g, '')}`;
                 checkbox.className = `job-source-checkbox ${checkboxClass}`;
                 label.appendChild(checkbox);
                 label.appendChild(document.createTextNode(` ${source.name}`));
@@ -263,95 +535,213 @@
             });
         }
 
+        function addKeyword(keyword) {
+            const keywordsInput = document.getElementById('keywords');
+            const currentValue = keywordsInput.value.trim();
+            if (currentValue && !currentValue.toLowerCase().includes(keyword.toLowerCase())) {
+                keywordsInput.value = currentValue + ' ' + keyword;
+            } else if (!currentValue) {
+                keywordsInput.value = keyword;
+            }
+            keywordsInput.focus();
+        }
+
+        function addToRecentSearches(searchData) {
+            const searchItem = {
+                keywords: searchData.keywords,
+                location: searchData.location,
+                timestamp: Date.now()
+            };
+            
+            // Remove duplicates and keep only last 5
+            recentSearches = recentSearches.filter(item => 
+                !(item.keywords === searchItem.keywords && item.location === searchItem.location)
+            );
+            recentSearches.unshift(searchItem);
+            recentSearches = recentSearches.slice(0, 5);
+            
+            updateRecentSearchesDisplay();
+        }
+
+        function updateRecentSearchesDisplay() {
+            const container = document.getElementById('recentSearches');
+            const list = document.getElementById('recentSearchesList');
+            
+            if (recentSearches.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+            
+            container.style.display = 'block';
+            list.innerHTML = '';
+            
+            recentSearches.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'recent-search-item';
+                div.textContent = item.keywords + (item.location ? ` in ${item.location}` : '');
+                div.onclick = () => {
+                    document.getElementById('keywords').value = item.keywords;
+                    document.getElementById('location').value = item.location || '';
+                };
+                list.appendChild(div);
+            });
+        }
+
         function generateSearchLinks() {
             const keywords = document.getElementById('keywords').value.trim();
-            const recency = document.getElementById('recency').value;
+            const location = document.getElementById('location').value;
+            const recencySelect = document.getElementById('recency');
+            const recencyValue = recencySelect.value;
+            const recencyText = recencyValue ? recencySelect.options[recencySelect.selectedIndex].text : 'Anytime';
+
             const linksList = document.getElementById('linksList');
-            linksList.innerHTML = ''; // Clear previous results
+            const loadingMessage = document.getElementById('loadingMessage');
+            const searchSummary = document.getElementById('searchSummary');
+            const summaryContent = document.getElementById('summaryContent');
+            const openAllButton = document.getElementById('openAllButton');
+
+            linksList.innerHTML = '';
+            loadingMessage.style.display = 'block';
+            searchSummary.style.display = 'none';
+            openAllButton.style.display = 'none';
 
             if (!keywords) {
-                alert("Please enter some keywords (e.g., job title, skills, location).");
+                alert("Please enter keywords (job title, skills, etc.)");
+                loadingMessage.style.display = 'none';
                 return;
             }
 
             const selectedSources = [];
             document.querySelectorAll('.job-source-checkbox:checked').forEach(checkbox => {
-                selectedSources.push({value: checkbox.value, name: checkbox.parentElement.textContent.trim()});
+                let sourceName = checkbox.parentElement.textContent.trim();
+                const fullConfig = [...jobPlatformConfig, ...mncConfig, ...govBankingConfig];
+                const configEntry = fullConfig.find(entry => entry.site === checkbox.value && entry.name === sourceName);
+                if (configEntry) sourceName = configEntry.name;
+
+                selectedSources.push({value: checkbox.value, name: sourceName});
             });
 
             if (selectedSources.length === 0) {
-                alert("Please select at least one job source from Platforms/ATS or MNCs.");
+                alert("Please select at least one job source.");
+                loadingMessage.style.display = 'none';
                 return;
             }
 
-            let linksGeneratedCount = 0;
-            selectedSources.forEach(sourceDetail => {
-                const siteOperators = sourceDetail.value.split(" OR ");
-                siteOperators.forEach(siteOperator => {
-                    siteOperator = siteOperator.trim();
-                    if (!siteOperator) return;
+            // Add to recent searches
+            addToRecentSearches({keywords, location});
 
-                    let queryParts = [];
-                    queryParts.push(encodeURIComponent(keywords));
-
-                    // Smartly add site: only if it's not a full URL search
-                    if (!siteOperator.startsWith("http://") && !siteOperator.startsWith("https://")) {
-                         queryParts.push(`site:${siteOperator}`);
-                    } else {
-                        // For full URLs, sometimes better to just include them in the main query
-                        // or use site: with just the domain. This logic might need refinement.
-                        // For now, let's assume `site:` is usually beneficial.
-                        let domain = siteOperator;
-                        try {
-                            domain = new URL(siteOperator).hostname;
-                             queryParts.push(`site:${domain} ${encodeURIComponent(new URL(siteOperator).pathname + new URL(siteOperator).search)}`);
-                        } catch (e) {
-                             queryParts.push(`site:${siteOperator}`); // Fallback if not a valid full URL
-                        }
-                    }
-
-                    let query = queryParts.join(" ");
-                    let searchUrl = `https://www.google.com/search?q=${query}`;
-
-                    if (recency) {
-                        searchUrl += `&as_qdr=${recency}`;
-                    }
-                    // Add sort by date parameter, Google usually does this with as_qdr but can be explicit
-                    searchUrl += `&tbs=sbd:1`;
-
-
-                    const listItem = document.createElement('li');
-                    const link = document.createElement('a');
-                    link.href = searchUrl;
-
-                    // Attempt to get a cleaner name for the link text
-                    let sourceNameDisplay = sourceDetail.name;
-                    if (sourceNameDisplay.includes(siteOperator)) { // if siteOperator is part of the name
-                        sourceNameDisplay = sourceNameDisplay.replace(siteOperator, '').trim();
-                        if (sourceNameDisplay.endsWith("OR")) sourceNameDisplay = sourceNameDisplay.slice(0, -2).trim();
-                    }
-                    if (!sourceNameDisplay || sourceNameDisplay.length < 2) sourceNameDisplay = siteOperator; // Fallback to siteOperator
-
-                    link.textContent = `${sourceNameDisplay}`;
-                    link.target = "_blank";
-                    listItem.appendChild(link);
-                    linksList.appendChild(listItem);
-                    linksGeneratedCount++;
-                });
-            });
-
-            if (linksGeneratedCount === 0) {
-                const listItem = document.createElement('li');
-                listItem.textContent = "No search links generated. Please check your keyword and source selections.";
-                linksList.appendChild(listItem);
+            // Build search query
+            let searchQuery = keywords;
+            if (location) {
+                searchQuery += ` ${location}`;
             }
+
+            // Show search summary
+            summaryContent.innerHTML = `
+                <strong>Keywords:</strong> ${keywords}<br>
+                <strong>Location:</strong> ${location || 'All locations'}<br>
+                <strong>Recency:</strong> ${recencyText}<br>
+                <strong>Sources:</strong> ${selectedSources.length} selected
+                <div class="query-preview">Search query: "${searchQuery}"</div>
+            `;
+            searchSummary.style.display = 'block';
+
+            currentLinks = [];
+            let linksGeneratedCount = 0;
+
+            setTimeout(() => {
+                selectedSources.forEach(sourceDetail => {
+                    const siteOperators = sourceDetail.value.split(" OR ");
+                    siteOperators.forEach(siteOperator => {
+                        siteOperator = siteOperator.trim();
+                        if (!siteOperator) return;
+
+                        let queryParts = [encodeURIComponent(searchQuery)];
+                        queryParts.push(`site:${siteOperator}`);
+
+                        let query = queryParts.join(" ");
+                        let searchUrl = `https://www.google.com/search?q=${query}`;
+
+                        if (recencyValue) {
+                            searchUrl += `&as_qdr=${recencyValue}`;
+                        }
+                        searchUrl += `&tbs=sbd:1`;
+
+                        const listItem = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = searchUrl;
+                        link.target = "_blank";
+
+                        const keywordsText = document.createElement('span');
+                        keywordsText.textContent = `Search "${searchQuery}" on `;
+
+                        const sourceNameSpan = document.createElement('span');
+                        sourceNameSpan.className = 'result-source-name';
+                        sourceNameSpan.textContent = sourceDetail.name;
+                        if(siteOperators.length > 1) {
+                            sourceNameSpan.textContent += ` (${siteOperator})`;
+                        }
+
+                        const recencySpan = document.createElement('span');
+                        recencySpan.className = 'result-recency';
+                        recencySpan.textContent = `Recency: ${recencyText}`;
+
+                        link.appendChild(keywordsText);
+                        link.appendChild(sourceNameSpan);
+                        link.appendChild(recencySpan);
+
+                        listItem.appendChild(link);
+                        linksList.appendChild(listItem);
+                        
+                        currentLinks.push(searchUrl);
+                        linksGeneratedCount++;
+                    });
+                });
+
+                if (linksGeneratedCount === 0) {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = "No search links generated. Please check your selections.";
+                    linksList.appendChild(listItem);
+                } else {
+                    openAllButton.style.display = 'block';
+                    document.getElementById('resultsCount').textContent = `(${linksGeneratedCount} links)`;
+                }
+                loadingMessage.style.display = 'none';
+            }, 50);
         }
 
-        // Populate job sources on page load
+        function openAllLinks() {
+            if (currentLinks.length === 0) return;
+            
+            const confirmMsg = `This will open ${currentLinks.length} links in new tabs. Continue?`;
+            if (!confirm(confirmMsg)) return;
+            
+            // Track in analytics
+            gtag('event', 'bulk_open', {
+                'event_category': 'search',
+                'event_label': 'open_all_links',
+                'value': currentLinks.length
+            });
+            
+            currentLinks.forEach((url, index) => {
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, index * 100); // Stagger opening to avoid browser blocking
+            });
+        }
+
+        // Add keyboard support
+        document.getElementById('keywords').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                generateSearchLinks();
+            }
+        });
+
         window.onload = () => {
             populateJobSources(jobPlatformConfig, 'jobPlatforms', 'platform-checkbox');
             populateJobSources(mncConfig, 'mncJobSources', 'mnc-checkbox');
+            populateJobSources(govBankingConfig, 'govJobSources', 'gov-checkbox');
+            updateRecentSearchesDisplay();
         };
     </script>
 </body>
-</html>
