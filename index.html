@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="icon.png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>India Job Search Aggregator (Enhanced)</title>
+    <title> India Job Search Aggregator (Enhanced)</title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T913Y0WNP"></script>
@@ -54,6 +55,24 @@
             color: var(--accent-color);
             margin-bottom: 30px;
             font-size: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .header-subtitle {
+            text-align: center;
+            color: var(--secondary-text-color);
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
         .form-row {
@@ -338,7 +357,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>India Job Search Aggregator</h1>
+    <h1>
+        <img src="icon.png" alt="Job Search Icon" class="header-icon">
+        India Job Search Aggregator
+    </h1>
+    <div class="header-subtitle">Find your dream job across multiple platforms</div>
 
         <div class="recent-searches" id="recentSearches">
             <h3>Recent Searches</h3>
@@ -745,3 +768,4 @@
         };
     </script>
 </body>
+</html>
