@@ -4,7 +4,30 @@
     <link rel="icon" type="image/png" href="icon.png" sizes="16x16">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> India Job Search Aggregator (Enhanced)</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>India Job Search Aggregator - Find Jobs Across Multiple Platforms | Free Job Search Tool</title>
+    <meta name="description" content="Discover your dream job in India with our comprehensive job search aggregator. Search across Naukri, LinkedIn, Indeed, government jobs, and 40+ platforms simultaneously. Free tool for job seekers.">
+    <meta name="keywords" content="job search India, Naukri jobs, LinkedIn jobs, Indeed India, government jobs, IT jobs, fresher jobs, remote jobs, job aggregator, career search">
+    <meta name="author" content="Rahil Maniar">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="India Job Search Aggregator - Find Jobs Across Multiple Platforms">
+    <meta property="og:description" content="Search for jobs across 40+ platforms including Naukri, LinkedIn, Indeed, government jobs, and major companies. Free comprehensive job search tool for India.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://rahil-maniar.github.io/ATS-Optimized-Job-Search/">
+    <meta property="og:site_name" content="India Job Search Aggregator">
+    <meta property="og:locale" content="en_IN">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="theme-color" content="#4a90e2">
+    <meta name="msapplication-TileColor" content="#4a90e2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Job Search India">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T913Y0WNP"></script>
@@ -353,6 +376,24 @@
             background-color: var(--accent-color);
             color: white;
         }
+
+        /* Hover effects for feedback buttons */
+        a[href*="googleforms"]:hover, a[href*="linkedin"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+        }
+        
+        /* Responsive design for feedback section */
+        @media (max-width: 640px) {
+            div[style*="display: flex; flex-wrap: wrap"] {
+                flex-direction: column !important;
+            }
+            
+            a[href*="googleforms"], a[href*="linkedin"] {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -459,7 +500,46 @@
             <h2>Generated Search Links <span class="results-count" id="resultsCount"></span></h2>
             <ul id="linksList"></ul>
         </div>
-    </div>
+
+        <!-- Enhanced Feedback Section -->
+        <div style="margin-top: 40px; padding: 25px; background-color: var(--card-bg-color); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h3 style="color: var(--accent-color); margin: 0 0 10px 0; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <span style="font-size: 1.5rem;">💬</span>
+                    Feedback & Connect
+                </h3>
+                <p style="color: var(--secondary-text-color); margin: 0; font-size: 0.95rem;">
+                    Help us improve the India Job Search Aggregator
+                </p>
+            </div>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecdzSP15_NIPA17r9sRutWxjFnKJD3SbyxCK0GE6EP8I6Bhw/viewform?usp=header" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--success-color); color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);">
+                    <span style="font-size: 1.1rem;">📝</span>
+                    Share Feedback
+                </a>
+                
+                <a href="https://www.linkedin.com/in/rahil-maniar-9a1707220" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   style="display: inline-flex; align-items: center; gap: 8px; background-color: #0077b5; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0, 119, 181, 0.3);">
+                    <span style="font-size: 1.1rem;">💼</span>
+                    Connect on LinkedIn
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                <p style="color: var(--secondary-text-color); margin: 0; font-size: 0.85rem; font-style: italic;">
+                    Your suggestions help make this tool better for everyone! 🚀
+                </p>
+            </div>
+        </div>
+        <!-- End of Enhanced Feedback Section -->
+
+    </div> <!-- This is the closing div for the class="container" -->
 
     <script>
         const jobPlatformConfig = [
@@ -500,13 +580,13 @@
             { name: "HCLTech Careers", site: "hcltech.com/careers" },
             { name: "IBM Careers", site: "ibm.com/careers" },
             { name: "Cognizant Careers", site: "careers.cognizant.com" },
-            { name: "Deloitte Careers", site: "deloitte.com/careers" },
-            { name: "EY Careers", site: "ey.com/careers" },
+            { name: "Deloitte Careers", site: "southasiacareers.deloitte.com" },
+            { name: "EY Careers", site: "ey.com/en_gl/careers" },
             { name: "PwC Careers", site: "pwc.com/careers" },
             { name: "Oracle Careers", site: "oracle.com/careers" },
-            { name: "SAP Careers", site: "sap.com/careers" },
-            { name: "Salesforce Careers", site: "salesforce.com/careers" },
-            { name: "Adobe Careers", site: "adobe.com/careers" }
+            { name: "SAP Careers", site: "jobs.sap.com" },
+            { name: "Salesforce Careers", site: "careers.salesforce.com" },
+            { name: "Adobe Careers", site: "careers.adobe.com" }
         ];
 
         const govBankingConfig = [
