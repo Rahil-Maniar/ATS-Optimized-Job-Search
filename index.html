@@ -422,8 +422,9 @@
             </div>
             <div class="form-group">
                 <label for="location">Location:</label>
-                <select id="location">
+                <select id="location" onchange="toggleCustomLocation()">
                     <option value="">All Locations</option>
+                    <option value="India">India</option>
                     <option value="Mumbai">Mumbai</option>
                     <option value="Bangalore">Bangalore</option>
                     <option value="Delhi">Delhi</option>
@@ -435,7 +436,9 @@
                     <option value="Noida">Noida</option>
                     <option value="Gurgaon">Gurgaon</option>
                     <option value="remote">Remote</option>
+                    <option value="other">Other</option>
                 </select>
+                <input type="text" id="customLocation" placeholder="Enter your city/location" style="display: none; margin-top: 10px;">
             </div>
             <div class="form-group">
                 <label for="recency">Recency:</label>
@@ -692,7 +695,14 @@
 
         function generateSearchLinks() {
             const keywords = document.getElementById('keywords').value.trim();
-            const location = document.getElementById('location').value;
+            let location = document.getElementById('location').value;
+            
+            // Handle custom location
+            if (location === 'other') {
+                const customLocation = document.getElementById('customLocation').value.trim();
+                location = customLocation || '';
+            }
+            
             const recencySelect = document.getElementById('recency');
             const recencyValue = recencySelect.value;
             const recencyText = recencyValue ? recencySelect.options[recencySelect.selectedIndex].text : 'Anytime';
@@ -831,6 +841,19 @@
                     window.open(url, '_blank');
                 }, index * 100); // Stagger opening to avoid browser blocking
             });
+        }
+
+        function toggleCustomLocation() {
+            const locationSelect = document.getElementById('location');
+            const customLocationInput = document.getElementById('customLocation');
+            
+            if (locationSelect.value === 'other') {
+                customLocationInput.style.display = 'block';
+                customLocationInput.focus();
+            } else {
+                customLocationInput.style.display = 'none';
+                customLocationInput.value = '';
+            }
         }
 
         // Add keyboard support
