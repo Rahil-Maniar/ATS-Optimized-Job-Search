@@ -394,6 +394,61 @@
                 justify-content: center !important;
             }
         }
+
+        /* Concise Introduction Styles */
+        .intro-banner {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover-color));
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+        }
+
+        .intro-content h2 {
+            margin: 0 0 8px 0;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .intro-content p {
+            margin: 0 0 15px 0;
+            font-size: 0.95rem;
+            opacity: 0.95;
+        }
+
+        .action-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .step-item {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        @media (max-width: 768px) {
+            .action-steps {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .step-item {
+                text-align: center;
+            }
+        }
+
+        /* Remove old styles */
+        .quick-steps {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -402,9 +457,20 @@
         <img src="icon.png" alt="Job Search Icon" class="header-icon">
         India Job Search Aggregator
     </h1>
-    <div class="header-subtitle">Find your dream job across multiple platforms. Write the keywords that you think the Job description of your desired job is likely to contain. 
-        <br> -Inspired by Brian's Job Search
-    </div>
+    <div class="header-subtitle">Be an early applicant on your dream job. Write keywords that the Job description of your desired job would contain. <br>- Inspired by Brian's Job Search</div>
+
+        <!-- Concise Introduction Section -->
+        <div class="intro-banner">
+            <div class="intro-content">
+                <h2>🎯 Get Jobs Before Others Do</h2>
+                <p><strong>Simple strategy:</strong> Apply within 24 hours of job posting = 3x better response rate. Find jobs before others even know they exist.</p>
+                <div class="action-steps">
+                    <div class="step-item">1. Enter job keywords</div>
+                    <div class="step-item">2. Select "Past 24 Hours" filter</div>
+                    <div class="step-item">3. Pick platforms → Scroll down → Generate → Apply</div>
+                </div>
+            </div>
+        </div>
 
         <div class="recent-searches" id="recentSearches">
             <h3>Recent Searches</h3>
