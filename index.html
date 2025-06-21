@@ -95,7 +95,7 @@
         .form-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; margin-bottom: 25px; }
         @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; gap: 15px; } }
         .form-group { margin-bottom: 25px; }
-        label, legend { display: block; margin-bottom: 10px; font-weight: bold; color: var(--secondary-text-color); font-size: 0.95rem; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--secondary-text-color); font-size: 0.95rem; }
         input[type="text"], select { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--primary-text-color); font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
         input[type="text"]::placeholder { color: #777; }
         input[type="text"]:focus, select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3); }
@@ -108,14 +108,43 @@
         .advanced-options label { display: inline-flex; align-items: center; cursor: pointer; font-weight: normal; color: var(--primary-text-color); }
         .advanced-options input[type="checkbox"] { width: 16px; height: 16px; margin-right: 12px; accent-color: var(--accent-color); }
 
-        fieldset { border: 1px solid var(--border-color); padding: 20px; border-radius: 8px; margin-bottom: 25px; }
-        legend { padding: 0 10px; font-size: 1.1rem; color: var(--accent-color); }
+        fieldset { border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; }
+          legend {
+            padding: 12px 16px; font-size: 1.1rem; color: var(--accent-color); font-weight: bold; width: 100%;
+            display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+            background: linear-gradient(135deg, var(--hover-bg-color), var(--card-bg-color));
+            border-radius: 8px; margin: -15px -20px 15px -20px; transition: all 0.3s ease;
+            border: 1px solid transparent; box-sizing: border-box;
+        }
+        legend:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover-color));
+            color: white; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+            border-color: var(--accent-color);
+        }
+        .collapse-icon { 
+            font-size: 1.2rem; color: inherit; transition: transform 0.3s ease-in-out;
+            background: rgba(255, 255, 255, 0.1); border-radius: 50%; width: 28px; height: 28px;
+            display: flex; align-items: center; justify-content: center; font-weight: bold;
+        }
+        fieldset:not(.active) .collapse-icon { transform: rotate(-90deg); }
+        
+        .collapsible-content {
+            max-height: 0; overflow: hidden; opacity: 0;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+        fieldset.active .collapsible-content {
+            max-height: 2000px; opacity: 1;
+            transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease 0.1s;
+        }
+        
         .job-sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 10px; }
         .job-sources-grid label { font-weight: normal; display: flex; align-items: center; background-color: var(--hover-bg-color); padding: 12px; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, box-shadow 0.2s, opacity 0.3s; font-size: 0.9rem; }
         .job-sources-grid label:hover { background-color: #454545; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .job-sources-grid label.disabled { cursor: not-allowed; opacity: 0.5; background-color: #333; }
         .job-sources-grid input[type="checkbox"] { margin-right: 12px; accent-color: var(--accent-color); width: 16px; height: 16px; cursor: pointer; }
-        .select-all-container { margin-bottom: 15px; }
+        
+        /* MODIFIED: Adjusted Select All container margin */
+        .select-all-container { margin-top: 15px; margin-bottom: 5px; }
         .select-all-container label { display: inline-flex; align-items: center; font-weight: normal; margin-right: 15px; font-size: 0.9rem; }
         .select-all-container input[type="checkbox"] { margin-right: 8px; }
 
@@ -132,28 +161,13 @@
         button#copyLinkButton:hover { background-color: #f57c00; transform: translateY(-1px); }
         button:active { transform: translateY(0px); }
         
-        /* --- NEW: Copy Notification Styling --- */
         #copyNotification {
-            position: absolute;
-            bottom: 110%; /* Position above the button group */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--success-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            z-index: 10;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s, visibility 0.3s;
+            position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%); background-color: var(--success-color);
+            color: white; padding: 8px 15px; border-radius: 6px; font-size: 0.9rem; font-weight: bold; z-index: 10;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
         }
-        #copyNotification.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        #copyNotification.show { opacity: 1; visibility: visible; }
+  
         #loadingMessage { text-align: center; color: var(--secondary-text-color); font-style: italic; margin-top: 15px; display: none; }
         .search-summary { background-color: var(--card-bg-color); padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid var(--accent-color); display: none; }
         .search-summary h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 1.1rem; }
@@ -241,6 +255,7 @@
                 <select id="location" onchange="toggleCustomLocation()">
                     <option value="">All Locations</option>
                     <option value="India">India</option>
+                    <option value="USA">USA</option>
                     <option value="Mumbai">Mumbai</option>
                     <option value="Bangalore">Bangalore</option>
                     <option value="Delhi">Delhi</option>
@@ -276,32 +291,44 @@
                 Find jobs on company sites only (hides major job boards)
             </label>
         </div>
-
-        <fieldset>
-            <legend>Job Platforms & ATS</legend>
+        
+        <!-- MODIFIED HTML Structure for Collapsible Sections -->
+        <fieldset id="platforms-fieldset" class="active">
+            <legend onclick="toggleCollapsible(this)">
+                Job Platforms & ATS
+                <span class="collapse-icon">▼</span>
+            </legend>
             <div class="select-all-container">
                  <input type="checkbox" id="selectAllPlatforms" onclick="toggleSelectAll(this, 'platform-checkbox')">
                  <label for="selectAllPlatforms">Select All Platforms/ATS</label>
             </div>
-            <div class="job-sources-grid" id="jobPlatforms"></div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Major Companies</legend>
-             <div class="select-all-container">
+            <div class="collapsible-content">
+                <div class="job-sources-grid" id="jobPlatforms"></div>
+            </div>
+        </fieldset>        <fieldset id="companies-fieldset" class="active">
+            <legend onclick="toggleCollapsible(this)">
+                Major Companies & MNCs
+                <span class="collapse-icon">▼</span>
+            </legend>
+            <div class="select-all-container">
                 <input type="checkbox" id="selectAllMNCs" onclick="toggleSelectAll(this, 'mnc-checkbox')">
                 <label for="selectAllMNCs">Select All Companies</label>
             </div>
-            <div class="job-sources-grid" id="mncJobSources"></div>
-        </fieldset>
-
-        <fieldset>
-            <legend>Government & Banking</legend>
-             <div class="select-all-container">
-                <input type="checkbox" id="selectAllGov" onclick="toggleSelectAll(this, 'gov-checkbox')">
-                <label for="selectAllGov">Select All Gov/Banking</label>
+            <div class="collapsible-content">
+                <div class="job-sources-grid" id="mncJobSources"></div>
             </div>
-            <div class="job-sources-grid" id="govJobSources"></div>
+        </fieldset>        <fieldset id="gov-fieldset" class="active">
+            <legend onclick="toggleCollapsible(this)">
+                Government, Banking & PSUs
+                <span class="collapse-icon">▼</span>
+            </legend>
+            <div class="select-all-container">
+                <input type="checkbox" id="selectAllGov" onclick="toggleSelectAll(this, 'gov-checkbox')">
+                <label for="selectAllGov">Select All Gov/PSU</label>
+            </div>
+            <div class="collapsible-content">
+                <div class="job-sources-grid" id="govJobSources"></div>
+            </div>
         </fieldset>
         
         <div class="button-group">
@@ -333,68 +360,74 @@
 
     <script>
         const jobPlatformConfig = [
-            { name: "Naukri.com", site: "naukri.com" }, { name: "Indeed India", site: "indeed.co.in" },
-            { name: "LinkedIn Jobs", site: "linkedin.com/jobs" }, { name: "Shine.com", site: "shine.com" },
-            { name: "Foundit (Monster)", site: "foundit.in" }, { name: "TimesJobs", site: "timesjobs.com" },
-            { name: "Glassdoor India", site: "glassdoor.co.in/Job" }, { name: "Freshersworld", site: "freshersworld.com" },
-            { name: "Internshala Jobs", site: "internshala.com/jobs" }, { name: "Internshala Internships", site: "internshala.com/internships" },
-            { name: "Cutshort", site: "cutshort.io" }, { name: "Hirist (Tech)", site: "hirist.com" },
-            { name: "Apna.co Jobs", site: "apna.co/jobs" }, { name: "Instahyre", site: "instahyre.com" },
-            { name: "Wellfound (AngelList)", site: "wellfound.com" }, { name: "Greenhouse ATS", site: "boards.greenhouse.io" },
-            { name: "Lever ATS", site: "jobs.lever.co" }, { name: "Ashby ATS", site: "jobs.ashbyhq.com" },
-            { name: "Workday ATS", site: "myworkdayjobs.com" }, { name: "SmartRecruiters ATS", site: "jobs.smartrecruiters.com" },
-            { name: "BambooHR ATS", site: "bamboohr.com/careers" }
+            { name: "Apna.co Jobs", site: "apna.co/jobs" }, { name: "Ashby ATS", site: "jobs.ashbyhq.com" },
+            { name: "BambooHR ATS", site: "bamboohr.com/careers" }, { name: "Built In (US Tech)", site: "builtin.com" },
+            { name: "Cutshort", site: "cutshort.io" }, { name: "Dice (US Tech)", site: "dice.com" },
+            { name: "Foundit (Monster)", site: "foundit.in" }, { name: "Freshersworld", site: "freshersworld.com" },
+            { name: "Glassdoor", site: "glassdoor.co.in/Job" }, { name: "Greenhouse ATS", site: "boards.greenhouse.io" },
+            { name: "Hired (US Tech)", site: "hired.com" }, { name: "Hirist (Tech)", site: "hirist.com" },
+            { name: "Indeed", site: "indeed.co.in" }, { name: "Instahyre", site: "instahyre.com" },
+            { name: "Internshala Internships", site: "internshala.com/internships" }, { name: "Internshala Jobs", site: "internshala.com/jobs" },
+            { name: "Lever ATS", site: "jobs.lever.co" }, { name: "LinkedIn Jobs", site: "linkedin.com/jobs" },
+            { name: "Naukri.com", site: "naukri.com" }, { name: "Otta (Tech)", site: "otta.com" },
+            { name: "Shine.com", site: "shine.com" }, { name: "SmartRecruiters ATS", site: "jobs.smartrecruiters.com" },
+            { name: "TimesJobs", site: "timesjobs.com" }, { name: "Wellfound (AngelList)", site: "wellfound.com" },
+            { name: "Workday ATS", site: "myworkdayjobs.com" }, { name: "YC Work at a Startup", site: "workatastartup.com" },
+            { name: "ZipRecruiter", site: "ziprecruiter.com" }
         ];
 
         const mncConfig = [
-            { name: "Google Careers", site: "careers.google.com" }, { name: "Microsoft Careers", site: "careers.microsoft.com" },
-            { name: "Amazon Jobs", site: "amazon.jobs" }, { name: "Meta Careers", site: "careers.meta.com" },
-            { name: "Apple Jobs", site: "jobs.apple.com" }, { name: "Accenture India", site: "accenture.com/in-en/careers" },
-            { name: "TCS Careers", site: "tcs.com/careers" }, { name: "Infosys Careers", site: "infosys.com/careers" },
-            { name: "Wipro Careers", site: "careers.wipro.com" }, { name: "Capgemini India", site: "capgemini.com/careers" },
-            { name: "HCLTech Careers", site: "hcltech.com/careers" }, { name: "IBM Careers", site: "ibm.com/careers" },
-            { name: "Cognizant Careers", site: "careers.cognizant.com" }, { name: "Deloitte Careers", site: "southasiacareers.deloitte.com" },
-            { name: "EY Careers", site: "ey.com/en_gl/careers" }, { name: "PwC Careers", site: "pwc.com/careers" },
-            { name: "Oracle Careers", site: "oracle.com/careers" }, { name: "SAP Careers", site: "jobs.sap.com" },
-            { name: "Salesforce Careers", site: "careers.salesforce.com" }, { name: "Adobe Careers", site: "careers.adobe.com" }
+            { name: "Accenture", site: "accenture.com/in-en/careers" }, { name: "Adobe", site: "careers.adobe.com" },
+            { name: "Airbnb", site: "careers.airbnb.com" }, { name: "Amazon", site: "amazon.jobs" },
+            { name: "AMD", site: "amd.com/careers" }, { name: "Apple", site: "jobs.apple.com" },
+            { name: "Atlassian", site: "atlassian.com/company/careers" }, { name: "Bain & Company", site: "bain.com/careers" },
+            { name: "BCG", site: "careers.bcg.com" }, { name: "Broadcom", site: "broadcom.com/company/careers" },
+            { name: "Capgemini", site: "capgemini.com/careers" }, { name: "Cisco", site: "cisco.com/careers" },
+            { name: "Cognizant", site: "careers.cognizant.com" }, { name: "Deloitte", site: "southasiacareers.deloitte.com" },
+            { name: "EY", site: "ey.com/en_gl/careers" }, { name: "Goldman Sachs", site: "goldmansachs.com/careers" },
+            { name: "Google", site: "careers.google.com" }, { name: "HCLTech", site: "hcltech.com/careers" },
+            { name: "IBM", site: "ibm.com/careers" }, { name: "Infosys", site: "infosys.com/careers" },
+            { name: "Intel", site: "intel.com/jobs" }, { name: "JPMorgan Chase", site: "careers.jpmorgan.com" },
+            { name: "McKinsey & Company", site: "mckinsey.com/careers" }, { name: "Meta", site: "careers.meta.com" },
+            { name: "Microsoft", site: "careers.microsoft.com" }, { name: "Morgan Stanley", site: "morganstanley.com/people-opportunities" },
+            { name: "Netflix", site: "jobs.netflix.com" }, { name: "Nvidia", site: "nvidia.com/careers" },
+            { name: "Oracle", site: "oracle.com/careers" }, { name: "PwC", site: "pwc.com/careers" },
+            { name: "Qualcomm", site: "qualcomm.com/company/careers" }, { name: "Salesforce", site: "careers.salesforce.com" },
+            { name: "SAP", site: "jobs.sap.com" }, { name: "ServiceNow", site: "servicenow.com/careers" },
+            { name: "Spotify", site: "lifeatspotify.com/jobs" }, { name: "Stripe", site: "stripe.com/jobs" },
+            { name: "TCS", site: "tcs.com/careers" }, { name: "Tesla", site: "tesla.com/careers" },
+            { name: "Uber", site: "uber.com/careers" }, { name: "Walmart", site: "careers.walmart.com" },
+            { name: "Wipro", site: "careers.wipro.com" }
         ];
 
         const govBankingConfig = [
-            { name: "UPSC Jobs", site: "upsc.gov.in" }, { name: "SSC Online", site: "ssc.nic.in" },
-            { name: "Railway Recruitment", site: "rrbcdg.gov.in OR indianrailways.gov.in" }, { name: "Banking Personnel Selection", site: "ibps.in" },
-            { name: "SBI Careers", site: "sbi.co.in/careers" }, { name: "ICICI Bank Careers", site: "icicibank.com/careers" },
-            { name: "HDFC Bank Careers", site: "hdfcbank.com/careers" }, { name: "Axis Bank Careers", site: "axisbank.com/careers" },
-            { name: "Kotak Careers", site: "kotak.com/careers" }, { name: "IndusInd Bank Careers", site: "indusind.com/careers" },
-            { name: "NABARD Careers", site: "nabard.org" }, { name: "RBI Careers", site: "rbi.org.in" },
-            { name: "LIC Careers", site: "licindia.in/careers" }, { name: "SAIL Careers", site: "sail.co.in/careers" },
-            { name: "ONGC Careers", site: "ongcindia.com/careers" }, { name: "NTPC Careers", site: "ntpc.co.in/careers" },
-            { name: "BHEL Careers", site: "bhel.com/careers" }, { name: "Coal India Careers", site: "coalindia.in/careers" },
-            { name: "IOCL Careers", site: "iocl.com/careers" }, { name: "BPCL Careers", site: "bharatpetroleum.in/careers" }
+            { name: "Axis Bank", site: "axisbank.com/careers" }, { name: "Banking Personnel (IBPS)", site: "ibps.in" },
+            { name: "BHEL", site: "bhel.com/careers" }, { name: "BPCL", site: "bharatpetroleum.in/careers" },
+            { name: "Coal India", site: "coalindia.in/careers" }, { name: "GAIL", site: "gailonline.com" },
+            { name: "HDFC Bank", site: "hdfcbank.com/careers" }, { name: "ICICI Bank", site: "icicibank.com/careers" },
+            { name: "IndusInd Bank", site: "indusind.com/careers" }, { name: "IOCL", site: "iocl.com/careers" },
+            { name: "Kotak Bank", site: "kotak.com/careers" }, { name: "LIC", site: "licindia.in/careers" },
+            { name: "NABARD", site: "nabard.org" }, { name: "NTPC", site: "ntpc.co.in/careers" },
+            { name: "ONGC", site: "ongcindia.com/careers" }, { name: "Power Grid (PGCIL)", site: "powergrid.in" },
+            { name: "Railway (RRB)", site: "rrbcdg.gov.in OR indianrailways.gov.in" }, { name: "RBI", site: "rbi.org.in" },
+            { name: "SAIL", site: "sail.co.in/careers" }, { name: "SBI", site: "sbi.co.in/careers" },
+            { name: "SSC", site: "ssc.nic.in" }, { name: "UPSC", site: "upsc.gov.in" }
         ];
         
-        const MAJOR_JOB_BOARD_SITES = [ "naukri.com", "indeed.co.in", "linkedin.com/jobs", "shine.com", "foundit.in", "timesjobs.com", "apna.co/jobs" ];
-
+        const MAJOR_JOB_BOARD_SITES = [ "naukri.com", "indeed.co.in", "linkedin.com/jobs", "shine.com", "foundit.in", "timesjobs.com", "apna.co/jobs", "ziprecruiter.com", "dice.com", "builtin.com", "hired.com", "otta.com" ];
         const searchPresets = {
             "entry-tech": { name: "Entry-Level Tech", keywords: "fresher graduate trainee sde-1 \"software engineer\" associate", recency: "w", sources: [ "naukri.com", "linkedin.com/jobs", "hirist.com", "cutshort.io", "wellfound.com", "boards.greenhouse.io", "jobs.lever.co" ] },
             "wfh-internships": { name: "WFH Internships", keywords: "internship intern \"work from home\" remote", recency: "w", sources: [ "internshala.com/internships", "linkedin.com/jobs", "naukri.com", "cutshort.io" ] },
             "experienced-tech": { name: "Experienced Tech (2+ Yrs)", keywords: "sde-2 \"senior software engineer\" \"software developer\"", recency: "d3", sources: [ "linkedin.com/jobs", "hirist.com", "cutshort.io", "instahyre.com", "careers.google.com", "careers.microsoft.com", "amazon.jobs" ] },
             "banking-jobs": { name: "Banking Jobs", keywords: "officer clerk manager po relationship", recency: "m", sources: [ "ibps.in", "sbi.co.in/careers", "icicibank.com/careers", "hdfcbank.com/careers", "axisbank.com/careers", "rbi.org.in", "naukri.com" ] }
         };
-
-        // --- NEW: Create mappings for URL compression ---
+        
         const allSources = [...jobPlatformConfig, ...mncConfig, ...govBankingConfig];
         const sourceToIdMap = new Map();
         const idToSourceMap = new Map();
-        allSources.forEach((source, index) => {
-            const id = index.toString(36); // Use base-36 for shorter IDs
-            sourceToIdMap.set(source.site, id);
-            idToSourceMap.set(id, source.site);
-        });
+        allSources.forEach((source, index) => { const id = index.toString(36); sourceToIdMap.set(source.site, id); idToSourceMap.set(id, source.site); });
 
-        let recentSearches = [];
-        let currentLinks = [];
-        let clickTrackingData = {};
-        let shareableLink = ''; // Variable to store the generated link
+        let recentSearches = [], currentLinks = [], clickTrackingData = {}, shareableLink = '';
 
         function loadClickTracking() { try { const d = localStorage.getItem("jobSearchClickTracking"); d && (clickTrackingData = JSON.parse(d)) } catch (e) { console.log("Could not load click tracking data"), clickTrackingData = {} } };
         function saveClickTracking() { try { localStorage.setItem("jobSearchClickTracking", JSON.stringify(clickTrackingData)) } catch (e) { console.log("Could not save click tracking data") } };
@@ -410,14 +443,17 @@
             config.forEach(source => {
                 const label = document.createElement('label');
                 const checkbox = document.createElement('input');
-                checkbox.type = 'checkbox';
-                checkbox.value = source.site;
+                checkbox.type = 'checkbox'; checkbox.value = source.site;
                 checkbox.id = `source-${containerId}-${source.name.replace(/[^a-zA-Z0-9]/g, '')}`;
                 checkbox.className = `job-source-checkbox ${checkboxClass}`;
-                label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(` ${source.name}`));
+                label.appendChild(checkbox); label.appendChild(document.createTextNode(` ${source.name}`));
                 sourcesContainer.appendChild(label);
             });
+        }
+
+        function toggleCollapsible(legendElement) {
+            const fieldset = legendElement.parentElement;
+            fieldset.classList.toggle('active');
         }
 
         function toggleSelectAll(masterCheckbox, checkboxClass) {
@@ -475,17 +511,13 @@
             }
         }
         
-        // --- NEW: Copy sharable link to clipboard ---
         function copyShareableLink() {
             if (!shareableLink) return;
             navigator.clipboard.writeText(shareableLink).then(() => {
                 const notification = document.getElementById('copyNotification');
                 notification.classList.add('show');
                 setTimeout(() => { notification.classList.remove('show'); }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy link: ', err);
-                alert('Failed to copy link. Please try again.');
-            });
+            }).catch(err => { console.error('Failed to copy link: ', err); alert('Failed to copy link. Please try again.'); });
         }
 
         function generateSearchLinks() {
@@ -493,24 +525,14 @@
             if (!keywords) { alert("Please enter keywords (job title, skills, etc.)"); return; }
             
             const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = `<h2>Generated Search Links <span class="results-count" id="resultsCount"></span></h2>
-                                    <div class="tracking-controls" id="trackingControls" style="display: none;">
-                                        <button class="clear-tracking-btn" onclick="clearClickTracking()">Clear Visit History</button>
-                                        <span class="tracking-info" id="trackingInfo"></span>
-                                    </div>
-                                    <div id="linksListContainer"></div>`;
-
+            resultsDiv.innerHTML = `<h2>Generated Search Links <span class="results-count" id="resultsCount"></span></h2><div class="tracking-controls" id="trackingControls" style="display: none;"><button class="clear-tracking-btn" onclick="clearClickTracking()">Clear Visit History</button><span class="tracking-info" id="trackingInfo"></span></div><div id="linksListContainer"></div>`;
             const loadingMessage = document.getElementById('loadingMessage');
             const linksListContainer = document.getElementById('linksListContainer');
             const openAllButton = document.getElementById('openAllButton');
             const copyLinkButton = document.getElementById('copyLinkButton');
-            
-            linksListContainer.innerHTML = '';
-            loadingMessage.style.display = 'block';
+            linksListContainer.innerHTML = ''; loadingMessage.style.display = 'block';
             document.getElementById('searchSummary').style.display = 'none';
-            openAllButton.style.display = 'none';
-            copyLinkButton.style.display = 'none';
-            shareableLink = '';
+            openAllButton.style.display = 'none'; copyLinkButton.style.display = 'none'; shareableLink = '';
 
             let locationValue = document.getElementById('location').value;
             const customLocation = document.getElementById('customLocation').value.trim();
@@ -518,9 +540,7 @@
             const recencyValue = recencySelect.value;
             const recencyText = recencyValue ? recencySelect.options[recencySelect.selectedIndex].text : 'Anytime';
             let finalKeywordsForGoogle = keywords;
-            if (locationValue === 'remote') {
-                finalKeywordsForGoogle += ' -bangalore -bengaluru -pune -mumbai -delhi -gurgaon -noida -hyderabad -chennai';
-            }
+            if (locationValue === 'remote') { finalKeywordsForGoogle += ' -bangalore -bengaluru -pune -mumbai -delhi -gurgaon -noida -hyderabad -chennai'; }
             let finalLocation = locationValue === 'other' ? customLocation || '' : locationValue;
             
             const selectedSourceSites = Array.from(document.querySelectorAll('.job-source-checkbox:checked')).map(cb => cb.value);
@@ -536,14 +556,11 @@
 
             saveCurrentSearch();
             addToRecentSearches({ keywords, location: finalLocation });
-            
             let displayQuery = keywords + (finalLocation ? ` ${finalLocation}` : '');
             let googleSearchQuery = finalKeywordsForGoogle + (finalLocation ? ` ${finalLocation}` : '');
-            
             const summaryDiv = document.getElementById('searchSummary');
             summaryDiv.innerHTML = `<h3>Search Summary</h3><div id="summaryContent"><strong>Keywords:</strong> ${keywords}<br><strong>Location:</strong> ${finalLocation || 'All locations'}<br><strong>Recency:</strong> ${recencyText}<br><strong>Sources:</strong> ${selectedSources.length} selected<div class="query-preview">Search query: "${displayQuery}"</div></div>`;
             summaryDiv.style.display = 'block';
-
             currentLinks = [];
             let categorizedLinkElements = { platforms: [], companies: [], gov: [] };
 
@@ -573,8 +590,7 @@
                         currentLinks.push(searchUrl);
                     });
                 });
-                
-                const categoryTitles = { platforms: "Job Platforms & ATS", companies: "Major Companies", gov: "Government & Banking" };
+                const categoryTitles = { platforms: "Job Platforms & ATS", companies: "Major Companies & MNCs", gov: "Government, Banking & PSUs" };
                 for (const category in categorizedLinkElements) {
                     if (categorizedLinkElements[category].length > 0) {
                         const groupDiv = document.createElement('div'); groupDiv.className = 'results-category-group';
@@ -583,16 +599,12 @@
                         linksListContainer.appendChild(groupDiv);
                     }
                 }
-
                 if (currentLinks.length === 0) { linksListContainer.innerHTML = "<p>No search links generated.</p>"; }
                 else {
-                    openAllButton.style.display = 'block';
-                    copyLinkButton.style.display = 'block';
+                    openAllButton.style.display = 'block'; copyLinkButton.style.display = 'block';
                     document.getElementById('resultsCount').textContent = `(${currentLinks.length} links)`;
                     document.getElementById('trackingControls').style.display = 'flex';
                     updateTrackingInfo();
-                    
-                    // --- NEW: Generate and store the shareable link ---
                     const params = new URLSearchParams();
                     params.set('k', document.getElementById('keywords').value.trim());
                     if(document.getElementById('location').value) params.set('l', document.getElementById('location').value);
@@ -610,7 +622,6 @@
         
         function openAllLinks() { if (currentLinks.length === 0) return; const msg = `This will open ${currentLinks.length} links in new tabs. Continue?`; if (!confirm(msg)) return; gtag('event', 'bulk_open', { 'event_category': 'search', 'event_label': 'open_all_links', 'value': currentLinks.length }); currentLinks.forEach((url, i) => { setTimeout(() => { window.open(url, '_blank'); }, i * 100); }); };
         function toggleCustomLocation() { const l = document.getElementById("location"), c = document.getElementById("customLocation"); if(l && c) "other" === l.value ? (c.style.display = "block", c.focus()) : (c.style.display = "none", c.value = "") };
-        
         function clearFormWithConfirm() { if (confirm('This will clear the form and your saved search configuration. Are you sure?')) { resetForm(true); } }
         
         function resetForm(clearStorage) {
@@ -635,10 +646,8 @@
         function saveCurrentSearch() {
             try {
                 const config = {
-                    keywords: document.getElementById('keywords').value.trim(),
-                    location: document.getElementById('location').value,
-                    customLocation: document.getElementById('customLocation').value.trim(),
-                    recency: document.getElementById('recency').value,
+                    keywords: document.getElementById('keywords').value.trim(), location: document.getElementById('location').value,
+                    customLocation: document.getElementById('customLocation').value.trim(), recency: document.getElementById('recency').value,
                     hiddenGems: document.getElementById('hiddenGemsToggle').checked,
                     selectedSources: Array.from(document.querySelectorAll('.job-source-checkbox:checked')).map(cb => cb.value)
                 };
@@ -650,32 +659,26 @@
             try {
                 const savedConfig = localStorage.getItem('jobSearchLastConfig');
                 if (!savedConfig) return;
-                const config = JSON.parse(savedConfig);
-                applyFormState(config);
+                applyFormState(JSON.parse(savedConfig));
             } catch (e) { console.error("Could not load last search configuration.", e); localStorage.removeItem('jobSearchLastConfig'); }
         }
         
-        // --- NEW: Load state from URL hash ---
         function loadStateFromURL() {
             if (!window.location.hash || !window.location.hash.startsWith('#!')) return false;
-            
-            const params = new URLSearchParams(window.location.hash.substring(2));
-            const config = {
-                keywords: params.get('k') || '',
-                location: params.get('l') || '',
-                customLocation: params.get('cl') || '',
-                recency: params.get('r') || '',
-                hiddenGems: params.get('hg') === '1',
-                selectedSources: (params.get('s') || '').split(',').map(id => idToSourceMap.get(id)).filter(Boolean)
-            };
-            
-            applyFormState(config);
-            // Clean the URL to avoid confusion on subsequent shares
-            history.replaceState(null, document.title, window.location.pathname + window.location.search);
-            return true;
+            try {
+                const params = new URLSearchParams(window.location.hash.substring(2));
+                const config = {
+                    keywords: params.get('k') || '', location: params.get('l') || '',
+                    customLocation: params.get('cl') || '', recency: params.get('r') || '',
+                    hiddenGems: params.get('hg') === '1',
+                    selectedSources: (params.get('s') || '').split(',').map(id => idToSourceMap.get(id)).filter(Boolean)
+                };
+                applyFormState(config);
+                history.replaceState(null, document.title, window.location.pathname + window.location.search);
+                return true;
+            } catch (e) { console.error("Failed to load state from URL.", e); return false; }
         }
 
-        // --- NEW: Central function to apply state to the form ---
         function applyFormState(config) {
             resetForm(false);
             document.getElementById('keywords').value = config.keywords || '';
@@ -716,7 +719,15 @@
             populateJobSources(govBankingConfig, 'govJobSources', 'gov-checkbox');
             populatePresets();
             loadClickTracking();
-            // Try loading from URL first, if that fails, load from localStorage
+            
+            // --- MODIFIED: Setup collapsible sections on load ---
+            document.querySelectorAll('fieldset legend').forEach(legend => {
+                const fieldset = legend.parentElement;
+                if (!fieldset.classList.contains('active')) {
+                    fieldset.querySelector('.collapsible-content').style.maxHeight = '0px';
+                }
+            });
+            
             if (!loadStateFromURL()) {
                 loadLastSearch();
             }
