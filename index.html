@@ -67,53 +67,52 @@
         }
         .container {
             max-width: 1000px;
-            margin: 30px auto;
+            margin: 20px auto;
             background-color: var(--surface-color);
-            padding: 20px 30px 30px 30px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.4);
         }
         h1 {
             text-align: center;
             color: var(--accent-color);
-            margin-bottom: 30px;
-            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
         }
-        .header-icon { width: 32px; height: 32px; object-fit: contain; }
-        .header-subtitle { text-align: center; color: var(--secondary-text-color); font-size: 1rem; margin-bottom: 25px; font-style: italic; }
+        .header-icon { width: 28px; height: 28px; object-fit: contain; }
+        .header-subtitle { text-align: center; color: var(--secondary-text-color); font-size: 0.95rem; margin-bottom: 25px; font-style: italic; }
         
         .presets-section { margin-bottom: 30px; }
         .presets-section h3 { font-size: 1rem; color: var(--secondary-text-color); text-align: center; margin-bottom: 15px; font-weight: normal; }
-        .presets-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-        .preset-button { background-color: var(--hover-bg-color); color: var(--primary-text-color); padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; font-weight: 600; }
+        .presets-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .preset-button { background-color: var(--hover-bg-color); color: var(--primary-text-color); padding: 8px 14px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; font-weight: 600; }
         .preset-button:hover { background-color: var(--accent-color); border-color: var(--accent-color); transform: translateY(-1px); }
 
-        .form-row { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 20px; margin-bottom: 25px; }
-        @media (max-width: 768px) { .form-row { grid-template-columns: 1fr; gap: 15px; } }
-        .form-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--secondary-text-color); font-size: 0.95rem; }
+        .form-row { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 0; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; color: var(--secondary-text-color); font-size: 0.9rem; }
         input[type="text"], select { width: 100%; padding: 12px 15px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; background-color: var(--input-bg-color); color: var(--primary-text-color); font-size: 1rem; transition: border-color 0.2s, box-shadow 0.2s; }
         input[type="text"]::placeholder { color: #777; }
         input[type="text"]:focus, select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3); }
 
-        .quick-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+        .quick-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
         .filter-tag { background-color: var(--hover-bg-color); color: var(--primary-text-color); padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; }
         .filter-tag:hover, .filter-tag.active { background-color: var(--accent-color); border-color: var(--accent-color); }
         
-        .advanced-options { background-color: rgba(74, 144, 226, 0.1); border: 1px solid var(--accent-color); padding: 15px; border-radius: 8px; margin-top: -10px; margin-bottom: 25px; }
-        .advanced-options label { display: inline-flex; align-items: center; cursor: pointer; font-weight: normal; color: var(--primary-text-color); }
+        .advanced-options { background-color: rgba(74, 144, 226, 0.1); border: 1px solid var(--accent-color); padding: 15px; border-radius: 8px; margin-bottom: 25px; }
+        .advanced-options label { display: inline-flex; align-items: center; cursor: pointer; font-weight: normal; color: var(--primary-text-color); font-size: 0.95rem; }
         .advanced-options input[type="checkbox"] { width: 16px; height: 16px; margin-right: 12px; accent-color: var(--accent-color); }
 
-        fieldset { border: 1px solid var(--border-color); padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; }
+        fieldset { border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; margin-bottom: 25px; }
           legend {
             padding: 12px 16px; font-size: 1.1rem; color: var(--accent-color); font-weight: bold; width: 100%;
             display: flex; justify-content: space-between; align-items: center; cursor: pointer;
             background: linear-gradient(135deg, var(--hover-bg-color), var(--card-bg-color));
-            border-radius: 8px; margin: -15px -20px 15px -20px; transition: all 0.3s ease;
+            border-radius: 8px; margin: -15px -15px 15px -15px; transition: all 0.3s ease;
             border: 1px solid transparent; box-sizing: border-box;
         }
         legend:hover {
@@ -137,24 +136,23 @@
             transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease 0.1s;
         }
         
-        .job-sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 10px; }
+        .job-sources-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 10px; }
         .job-sources-grid label { font-weight: normal; display: flex; align-items: center; background-color: var(--hover-bg-color); padding: 12px; border-radius: 6px; cursor: pointer; transition: background-color 0.2s, box-shadow 0.2s, opacity 0.3s; font-size: 0.9rem; }
         .job-sources-grid label:hover { background-color: #454545; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .job-sources-grid label.disabled { cursor: not-allowed; opacity: 0.5; background-color: #333; }
         .job-sources-grid input[type="checkbox"] { margin-right: 12px; accent-color: var(--accent-color); width: 16px; height: 16px; cursor: pointer; }
         
-        /* MODIFIED: Adjusted Select All container margin */
         .select-all-container { margin-top: 15px; margin-bottom: 5px; }
         .select-all-container label { display: inline-flex; align-items: center; font-weight: normal; margin-right: 15px; font-size: 0.9rem; }
         .select-all-container input[type="checkbox"] { margin-right: 8px; }
 
-        .button-group { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; position: relative; }
-        button { padding: 14px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: all 0.2s; letter-spacing: 0.5px; }
-        button#searchButton { background-color: var(--accent-color); color: white; flex: 2; }
+        .button-group { display: flex; flex-direction: column; gap: 15px; margin-top: 15px; position: relative; }
+        button { padding: 14px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1rem; font-weight: bold; transition: all 0.2s; letter-spacing: 0.5px; width: 100%; }
+        button#searchButton { background-color: var(--accent-color); color: white; }
         button#searchButton:hover { background-color: var(--accent-hover-color); transform: translateY(-1px); }
-        button#clearButton { background-color: var(--secondary-text-color); color: var(--bg-color); flex: 1; }
+        button#clearButton { background-color: var(--secondary-text-color); color: var(--bg-color); }
         button#clearButton:hover { background-color: #9e9e9e; transform: translateY(-1px); }
-        button#openAllButton, button#copyLinkButton { flex: 1; display: none; }
+        button#openAllButton, button#copyLinkButton { display: none; }
         button#openAllButton { background-color: var(--success-color); color: white; }
         button#openAllButton:hover { background-color: #45a049; transform: translateY(-1px); }
         button#copyLinkButton { background-color: var(--warning-color); color: white; }
@@ -169,33 +167,46 @@
         #copyNotification.show { opacity: 1; visibility: visible; }
   
         #loadingMessage { text-align: center; color: var(--secondary-text-color); font-style: italic; margin-top: 15px; display: none; }
-        .search-summary { background-color: var(--card-bg-color); padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid var(--accent-color); display: none; }
+        .search-summary { background-color: var(--card-bg-color); padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid var(--accent-color); display: none; font-size: 0.9rem; }
         .search-summary h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 1.1rem; }
-        .search-summary .query-preview { font-family: monospace; background-color: var(--hover-bg-color); padding: 8px; border-radius: 4px; font-size: 0.9rem; margin-top: 8px; }
+        .search-summary .query-preview { font-family: monospace; background-color: var(--hover-bg-color); padding: 8px; border-radius: 4px; font-size: 0.85rem; margin-top: 8px; word-break: break-all; }
         #results { margin-top: 35px; }
-        #results h2 { color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 12px; font-size: 1.5rem; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
+        #results h2 { color: var(--accent-color); border-bottom: 2px solid var(--border-color); padding-bottom: 12px; font-size: 1.4rem; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; }
         .results-count { font-size: 0.9rem; color: var(--secondary-text-color); font-weight: normal; }
         .results-category-group { margin-bottom: 30px; }
-        .results-category-group h3 { color: var(--secondary-text-color); font-size: 1.2rem; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+        .results-category-group h3 { color: var(--secondary-text-color); font-size: 1.1rem; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
         .results-category-group ul { list-style-type: none; padding: 0; }
-        #linksListContainer li { background-color: var(--card-bg-color); padding: 15px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent-color); transition: box-shadow 0.2s; }
+        #linksListContainer li { background-color: var(--card-bg-color); padding: 12px; margin-bottom: 12px; border-radius: 6px; border-left: 4px solid var(--accent-color); transition: box-shadow 0.2s; }
         #linksListContainer li:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        #linksListContainer a { text-decoration: none; color: var(--link-color); font-weight: 600; font-size: 1rem; }
+        #linksListContainer a { text-decoration: none; color: var(--link-color); font-weight: 600; font-size: 0.95rem; }
         #linksListContainer a:hover { text-decoration: underline; color: var(--link-hover-color); }
         .result-source-name { font-weight: bold; color: var(--primary-text-color); }
         .result-recency { font-size: 0.85em; color: var(--secondary-text-color); display: block; margin-top: 4px; }
         .recent-searches { background-color: var(--hover-bg-color); padding: 15px; border-radius: 6px; margin-bottom: 25px; display: none; }
         .recent-searches h3 { margin: 0 0 10px 0; color: var(--accent-color); font-size: 1rem; }
-        .recent-search-item { display: inline-block; background-color: var(--card-bg-color); padding: 6px 12px; margin: 4px 8px 4px 0; border-radius: 15px; font-size: 0.85rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; }
+        .recent-search-item { display: inline-block; background-color: var(--card-bg-color); padding: 6px 12px; margin: 4px; border-radius: 15px; font-size: 0.85rem; cursor: pointer; border: 1px solid var(--border-color); transition: all 0.2s; }
         .recent-search-item:hover { background-color: var(--accent-color); color: white; }
-        a[href*="googleforms"]:hover, a[href*="linkedin"]:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important; }
-        @media (max-width: 640px) { div[style*="display: flex; flex-wrap: wrap"] { flex-direction: column !important; } a[href*="googleforms"], a[href*="linkedin"] { width: 100% !important; justify-content: center !important; } }
+
+        .feedback-box { margin-top: 40px; padding: 20px; background-color: var(--card-bg-color); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .feedback-header { text-align: center; margin-bottom: 20px; }
+        .feedback-header h3 { color: var(--accent-color); margin: 0 0 10px 0; font-size: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .feedback-header h3 span { font-size: 1.4rem;}
+        .feedback-header p { color: var(--secondary-text-color); margin: 0; font-size: 0.9rem; }
+        .feedback-links { display: flex; flex-direction: column; gap: 15px; justify-content: center; align-items: center; }
+        .feedback-links a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); }
+        .feedback-links a.feedback-btn { background-color: var(--success-color); color: white; }
+        .feedback-links a.linkedin-btn { background-color: #0077b5; color: white; }
+        .feedback-links a span { font-size: 1.1rem; }
+        .feedback-links a:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+        .feedback-footer { text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
+        .feedback-footer p { color: var(--secondary-text-color); margin: 0; font-size: 0.8rem; font-style: italic; }
+
         .intro-banner { background: linear-gradient(135deg, var(--accent-color), var(--accent-hover-color)); color: white; padding: 20px; border-radius: 8px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3); }
-        .intro-content h2 { margin: 0 0 8px 0; font-size: 1.3rem; font-weight: bold; }
-        .intro-content p { margin: 0 0 15px 0; font-size: 0.95rem; opacity: 0.95; }
-        .action-steps { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
-        .step-item { background-color: rgba(255, 255, 255, 0.15); padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; flex: 1; min-width: 140px; }
-        @media (max-width: 768px) { .action-steps { flex-direction: column; gap: 8px; } .step-item { text-align: center; } }
+        .intro-content h2 { margin: 0 0 8px 0; font-size: 1.2rem; font-weight: bold; }
+        .intro-content p { margin: 0 0 15px 0; font-size: 0.9rem; opacity: 0.95; }
+        .action-steps { display: flex; flex-direction: column; gap: 8px; }
+        .step-item { background-color: rgba(255, 255, 255, 0.15); padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; text-align: center; }
+        
         .link-status-indicator { display: inline-flex; align-items: center; gap: 8px; width: 100%; }
         .visit-badge { font-size: 0.75rem; padding: 2px 6px; border-radius: 10px; font-weight: bold; min-width: 60px; text-align: center; }
         .visit-badge.unvisited { background-color: var(--accent-color); color: white; }
@@ -203,10 +214,31 @@
         #linksListContainer a.visited-link { opacity: 0.7; position: relative; }
         #linksListContainer a.visited-link::after { content: "✓"; position: absolute; right: -20px; top: 0; color: var(--success-color); font-weight: bold; }
         #linksListContainer a.visited-link:hover { opacity: 1; }
-        .tracking-controls { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
-        .clear-tracking-btn { background-color: var(--warning-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; }
+        .tracking-controls { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; align-items: center; }
+        .clear-tracking-btn { background-color: var(--warning-color); color: white; border: none; padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; width: 100%; }
         .clear-tracking-btn:hover { background-color: #f57c00; transform: translateY(-1px); }
-        .tracking-info { font-size: 0.8rem; color: var(--secondary-text-color); }
+        .tracking-info { font-size: 0.85rem; color: var(--secondary-text-color); }
+        
+        /* DESKTOP STYLES */
+        @media (min-width: 768px) {
+            .container { padding: 20px 30px 30px 30px; margin: 30px auto; }
+            h1 { font-size: 2.2rem; }
+            .header-icon { width: 32px; height: 32px; }
+            .header-subtitle { font-size: 1rem; }
+            .form-row { grid-template-columns: 2fr 1fr 1fr; }
+            .form-group { margin-bottom: 25px; }
+            .job-sources-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .button-group { flex-direction: row; }
+            button { width: auto; }
+            button#searchButton { flex: 2; }
+            button#clearButton, button#openAllButton, button#copyLinkButton { flex: 1; }
+            .action-steps { flex-direction: row; gap: 15px; }
+            .step-item { text-align: left; flex: 1; min-width: 140px;}
+            .feedback-links { flex-direction: row; }
+            .feedback-links a { width: auto; }
+            .tracking-controls { flex-direction: row; }
+            .clear-tracking-btn { width: auto; }
+        }
     </style>
 </head>
 <body>
@@ -292,7 +324,6 @@
             </label>
         </div>
         
-        <!-- MODIFIED HTML Structure for Collapsible Sections -->
         <fieldset id="platforms-fieldset" class="active">
             <legend onclick="toggleCollapsible(this)">
                 Job Platforms & ATS
@@ -305,7 +336,8 @@
             <div class="collapsible-content">
                 <div class="job-sources-grid" id="jobPlatforms"></div>
             </div>
-        </fieldset>        <fieldset id="companies-fieldset" class="active">
+        </fieldset>
+        <fieldset id="companies-fieldset" class="active">
             <legend onclick="toggleCollapsible(this)">
                 Major Companies & MNCs
                 <span class="collapse-icon">▼</span>
@@ -317,7 +349,8 @@
             <div class="collapsible-content">
                 <div class="job-sources-grid" id="mncJobSources"></div>
             </div>
-        </fieldset>        <fieldset id="gov-fieldset" class="active">
+        </fieldset>
+        <fieldset id="gov-fieldset" class="active">
             <legend onclick="toggleCollapsible(this)">
                 Government, Banking & PSUs
                 <span class="collapse-icon">▼</span>
@@ -342,17 +375,22 @@
         <div id="loadingMessage">Generating links, please wait...</div>
         <div class="search-summary" id="searchSummary"></div>
         <div id="results"></div>
-        <div style="margin-top: 40px; padding: 25px; background-color: var(--card-bg-color); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h3 style="color: var(--accent-color); margin: 0 0 10px 0; font-size: 1.3rem; display: flex; align-items: center; justify-content: center; gap: 10px;"><span style="font-size: 1.5rem;">💬</span> Feedback & Connect</h3>
-                <p style="color: var(--secondary-text-color); margin: 0; font-size: 0.95rem;">Help us improve the India Job Search Aggregator</p>
+        
+        <div class="feedback-box">
+            <div class="feedback-header">
+                <h3><span>💬</span> Feedback & Connect</h3>
+                <p>Help us improve the India Job Search Aggregator. Suggest Additional sites.</p>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center;">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecdzSP15_NIPA17r9sRutWxjFnKJD3SbyxCK0GE6EP8I6Bhw/viewform?usp=header" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background-color: var(--success-color); color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);"><span style="font-size: 1.1rem;">📝</span> Share Feedback</a>
-                <a href="https://www.linkedin.com/in/rahil-maniar-9a1707220" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background-color: #0077b5; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.2s; box-shadow: 0 2px 8px rgba(0, 119, 181, 0.3);"><span style="font-size: 1.1rem;">💼</span> Connect on LinkedIn</a>
+            <div class="feedback-links">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSecdzSP15_NIPA17r9sRutWxjFnKJD3SbyxCK0GE6EP8I6Bhw/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="feedback-btn">
+                    <span>📝</span> Share Feedback
+                </a>
+                <a href="https://www.linkedin.com/in/rahil-maniar-9a1707220" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+                    <span>💼</span> Connect on LinkedIn
+                </a>
             </div>
-            <div style="text-align: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color);">
-                <p style="color: var(--secondary-text-color); margin: 0; font-size: 0.85rem; font-style: italic;">Your suggestions help make this tool better for everyone! 🚀</p>
+            <div class="feedback-footer">
+                <p>Your suggestions help make this tool better for everyone! 🚀</p>
             </div>
         </div>
         
@@ -434,7 +472,7 @@
         function trackLinkClick(l, e) { const t = btoa(l).replace(/[^a-zA-Z0-9]/g, "").substring(0, 20); clickTrackingData[t] = { url: l, clickedAt: Date.now(), count: (clickTrackingData[t]?.count || 0) + 1 }, saveClickTracking(), updateLinkVisualState(e, !0), updateTrackingInfo() };
         function isLinkClicked(l) { return !!clickTrackingData[btoa(l).replace(/[^a-zA-Z0-9]/g, "").substring(0, 20)] };
         function updateLinkVisualState(l, e) { const t = l.querySelector(".visit-badge"); t && (e ? (t.textContent = "VISITED", t.className = "visit-badge visited", l.classList.add("visited-link")) : (t.textContent = "NEW", t.className = "visit-badge unvisited", l.classList.remove("visited-link"))) };
-        function clearClickTracking() { confirm("This will clear all visit history. Continue?") && (clickTrackingData = {}, saveClickTracking(), document.querySelectorAll("#linksListContainer a").forEach(l => { updateLinkVisualState(l, !1) }), updateTrackingInfo()) };
+        function clearClickTracking() { if(confirm("This will clear all visit history. Continue?")) { clickTrackingData = {}; saveClickTracking(); document.querySelectorAll("#linksListContainer a").forEach(l => { updateLinkVisualState(l, !1) }); updateTrackingInfo() } };
         function updateTrackingInfo() { const l = document.getElementById("trackingInfo"), e = document.querySelectorAll("#linksListContainer a.visited-link").length, t = document.querySelectorAll("#linksListContainer a").length; if(l) l.textContent = t > 0 ? `${e}/${t} links visited` : "" };
 
         function populateJobSources(config, containerId, checkboxClass) {
@@ -720,7 +758,6 @@
             populatePresets();
             loadClickTracking();
             
-            // --- MODIFIED: Setup collapsible sections on load ---
             document.querySelectorAll('fieldset legend').forEach(legend => {
                 const fieldset = legend.parentElement;
                 if (!fieldset.classList.contains('active')) {
