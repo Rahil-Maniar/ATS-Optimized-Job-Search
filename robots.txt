@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rahil-maniar.github.io/ATS-Optimized-Job-Search/sitemap.xml
